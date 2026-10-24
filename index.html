@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>成人百科索引 - 分类入口与备用地址</title>
+<meta name="description" content="成人百科的分类索引页，列出各栏目入口与备用地址，并检测主站当前是否可直连。内容面向 18 周岁及以上成年人。">
+
+<!-- ↓ 镜像站请取消下面这一行的注释，主力站保持注释状态。详见 README.md
+     只开 noindex,follow：不收录本页，但照常爬出站链接。
+     千万别同时再加一行指向主站的 canonical —— 两个信号互相矛盾，
+     canonical 会把 noindex 一并传给主站，可能把主站本身打掉。 -->
+<!-- <meta name="robots" content="noindex,follow"> -->
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="成人百科索引">
+<meta property="og:description" content="各栏目入口与备用地址，面向 18 周岁及以上成年人。">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" hidden>
+  <div class="gate-panel">
+    <h2 id="gate-title">年龄确认</h2>
+    <p>本站内容面向成年人。继续浏览前，请确认你已满 18 周岁。</p>
+    <div class="gate-actions">
+      <button type="button" id="gate-ok" class="btn-primary">我已满 18 周岁</button>
+      <button type="button" id="gate-no" class="btn-quiet">离开</button>
+    </div>
+    <p class="gate-fine">确认结果只存在你这台设备的浏览器里。</p>
+  </div>
+</div>
+
+<noscript>
+  <div class="page">
+    <h1 class="wordmark">成人百科</h1>
+    <p class="subline">索引页</p>
+    <p>本页需要 JavaScript 才能显示条目索引。你也可以直接访问
+      <a href="https://chengrenbaike.com/">chengrenbaike.com</a>（内容仅限年满 18 周岁者访问）。</p>
+  </div>
+</noscript>
+
+<!-- hidden 由 app.js 在年龄确认通过后撤掉。不能只靠遮罩遮住：
+     遮罩下面的链接还在 Tab 顺序里，能被键盘绕过去。 -->
+<div id="page" class="page" hidden>
+<header class="masthead">
+  <h1 class="wordmark" id="wordmark">成人百科</h1>
+  <p class="subline" id="subline">索引页</p>
+</header>
+
+<main>
+  <section class="gateway" aria-labelledby="gateway-title">
+    <h2 class="sr-only" id="gateway-title">主站入口</h2>
+    <div class="status">
+      <span class="dot" id="dot" data-state="checking" aria-hidden="true"></span>
+      <span class="status-text" id="status-text" role="status" aria-live="polite">正在检测主站连通性</span>
+    </div>
+    <a class="door" id="door" href="#">
+      <span class="door-label">进入主站</span>
+      <span class="door-host" id="door-host"></span>
+    </a>
+    <p class="status-hint" id="status-hint" hidden></p>
+  </section>
+
+  <section class="index-block" aria-labelledby="index-title">
+    <div class="block-head">
+      <h2 id="index-title">条目索引</h2>
+      <span class="count" id="count"></span>
+    </div>
+    <nav class="index" id="index" aria-labelledby="index-title"></nav>
+  </section>
+
+  <section class="index-block" id="mirror-block" aria-labelledby="mirror-title" hidden>
+    <div class="block-head">
+      <h2 id="mirror-title">备用入口</h2>
+      <span class="count">主站打不开时换一个</span>
+    </div>
+    <nav class="mirrors" id="mirrors" aria-labelledby="mirror-title"></nav>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="age">18+ 本站内容仅限年满 18 周岁者访问</p>
+  <p class="foot-note" id="foot-note"></p>
+</footer>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

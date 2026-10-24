@@ -1,0 +1,12 @@
+# GitLab Pages：把仓库根目录的静态文件复制进 public/ 发布
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - mkdir -p public
+    - cp index.html 404.html style.css data.js app.js robots.txt public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

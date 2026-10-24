@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>页面不存在</title>
+<meta name="robots" content="noindex">
+<!-- 样式内联，不引 style.css。
+     GitHub / GitLab Pages 的项目站挂在 /<仓库名>/ 下，404 页又会被任意
+     深度的路径触发：写 /style.css 会请求到域名根（拿不到），写 ./style.css
+     在 /<仓库名>/a/b/ 下会解析成 /<仓库名>/a/style.css（也拿不到）。
+     内联是唯一在所有平台、所有路径下都不会裸奔的做法。 -->
+<style>
+  :root { color-scheme: dark light; }
+  body {
+    margin: 0; min-height: 100vh;
+    display: flex; align-items: center;
+    background: #241B2A; color: #EDE4DC;
+    font-family: "PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 36rem; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  h1 {
+    font-family: "Songti SC","SimSun","Noto Serif SC",serif;
+    font-size: clamp(2.2rem,9vw,3rem); font-weight: 600;
+    letter-spacing: .06em; line-height: 1.05; margin: 0;
+  }
+  .sub { font-size: .8125rem; color: #A99BAE; letter-spacing: .3em; margin: .9rem 0 2.25rem; }
+  .door {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap; padding: 1.375rem;
+    background: #352741; border: 1px solid #4A3A52; border-left: 4px solid #C8A24A;
+    text-decoration: none; color: inherit;
+  }
+  .door:hover { background: #42304E; border-color: #C8A24A; }
+  .door b {
+    font-family: "Songti SC","SimSun","Noto Serif SC",serif;
+    font-size: 1.5rem; letter-spacing: .06em; color: #C8A24A;
+  }
+  .door span { font-size: .8125rem; color: #A99BAE; word-break: break-all; }
+  .back { display: inline-block; margin-top: 1.25rem; font-size: .875rem; color: #A99BAE; }
+  .back:hover { color: #C8A24A; }
+  a:focus-visible { outline: 2px solid #C8A24A; outline-offset: 3px; }
+  @media (prefers-color-scheme: light) {
+    body { background: #EFE8E0; color: #2A2030; }
+    .sub, .door span, .back { color: #6C5E73; }
+    .door { background: #E3D7C9; border-color: #C3B4B9; border-left-color: #8A6A1E; }
+    .door:hover { background: #DACBB8; border-color: #8A6A1E; }
+    .door b { color: #8A6A1E; }
+    .back:hover { color: #8A6A1E; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>没有这一页</h1>
+  <p class="sub">404</p>
+  <!-- 主按钮用绝对网址：在任何平台、任何路径下都不会指错 -->
+  <a class="door" href="https://chengrenbaike.com/">
+    <b>进入主站</b>
+    <span>chengrenbaike.com</span>
+  </a>
+  <!-- 次要链接。项目站（GitHub/GitLab 挂在 /<仓库名>/ 下）请改成 /<仓库名>/ -->
+  <a class="back" href="/">回索引页</a>
+</div>
+</body>
+</html>

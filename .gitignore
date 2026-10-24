@@ -1,0 +1,7 @@
+# Claude Code 本地设置，不要公开
+.claude/
+
+# 操作系统杂项
+Thumbs.db
+desktop.ini
+.DS_Store

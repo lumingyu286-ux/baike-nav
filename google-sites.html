@@ -1,0 +1,158 @@
+<!-- Google Sites 专用单文件版 -------------------------------
+     用法：编辑页面 → 插入 → 嵌入 → 嵌入代码 → 整份粘贴。
+     与主版的区别：单文件、无外部依赖、链接一律开新标签页
+     （iframe 里同标签跳转会把主站塞进这个小框）。
+     要改域名只改下面的 BASE 一处。
+------------------------------------------------------------ -->
+<div id="crbk"></div>
+<style>
+#crbk, #crbk * { box-sizing: border-box; }
+#crbk {
+  --ground:#241B2A; --surface:#2E2334; --paper:#EDE4DC;
+  --muted:#A99BAE; --rule:#4A3A52; --brass:#C8A24A; --door:#352741;
+  --serif:"Songti SC","SimSun","Noto Serif SC",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  background:var(--ground); color:var(--paper); font-family:var(--sans);
+  font-size:16px; line-height:1.6; padding:2rem 1.25rem; min-height:100vh;
+}
+#crbk a { color:inherit; text-decoration:none; }
+#crbk :focus-visible { outline:2px solid var(--brass); outline-offset:3px; }
+#crbk .wm { font-family:var(--serif); font-size:clamp(2.1rem,9vw,2.9rem);
+  font-weight:600; letter-spacing:.06em; line-height:1.05; margin:0; }
+#crbk .sub { font-size:.75rem; color:var(--muted); letter-spacing:.3em; margin:.75rem 0 2.25rem; }
+#crbk .door { display:flex; align-items:baseline; justify-content:space-between;
+  gap:1rem; flex-wrap:wrap; padding:1.375rem 1.375rem; background:var(--door);
+  border:1px solid var(--rule); border-left:4px solid var(--brass);
+  margin-bottom:2.5rem; transition:border-color .18s ease; }
+#crbk .door:hover { border-color:var(--brass); }
+#crbk .door b { font-family:var(--serif); font-size:1.5rem; letter-spacing:.06em;
+  color:var(--brass); }
+#crbk .door span { font-size:.8125rem; color:var(--muted); word-break:break-all; }
+#crbk .hd { display:flex; align-items:baseline; justify-content:space-between;
+  gap:1rem; border-bottom:1px solid var(--rule); padding-bottom:.5rem; }
+#crbk .hd h2 { font-family:var(--serif); font-size:1rem; font-weight:600;
+  letter-spacing:.12em; margin:0; }
+#crbk .hd em { font-style:normal; font-size:.75rem; color:var(--muted); }
+#crbk .e { display:block; padding:.8125rem .25rem;
+  border-bottom:1px solid rgba(74,58,82,.5); }
+#crbk .e:last-child { border-bottom:0; }
+#crbk .ln { display:flex; align-items:baseline; gap:.5rem; }
+#crbk .ln i { font-style:normal; font-size:1.0625rem; letter-spacing:.02em; }
+#crbk .ld { flex:1 1 auto; min-width:1.5rem; border-bottom:1px dotted var(--rule);
+  transform:translateY(-.32em); }
+#crbk .go { flex:none; font-size:.8125rem; color:var(--muted); }
+#crbk .nt { display:block; font-size:.8125rem; color:var(--muted); margin-top:.25rem; }
+#crbk .e:hover i, #crbk .e:hover .go { color:var(--brass); }
+#crbk .e:hover .ld { border-bottom-color:var(--brass); }
+#crbk .ft { border-top:1px solid var(--rule); margin-top:2.25rem; padding-top:1rem;
+  font-size:.75rem; color:var(--muted); }
+#crbk .gate { position:absolute; inset:0; z-index:9; background:var(--ground);
+  display:flex; align-items:center; justify-content:center; padding:1.25rem; }
+#crbk .gp { max-width:22rem; background:var(--surface); border-top:3px solid var(--brass);
+  padding:1.5rem 1.375rem; }
+#crbk .gp h2 { font-family:var(--serif); font-size:1.375rem; font-weight:600;
+  letter-spacing:.06em; margin:0 0 .625rem; }
+#crbk .gp p { font-size:.9375rem; margin:0 0 1.125rem; }
+#crbk .ga { display:flex; flex-wrap:wrap; gap:.625rem; margin-bottom:1rem; }
+#crbk .bd[hidden] { display:none; }
+#crbk button { font-family:inherit; font-size:.9375rem; padding:.5625rem 1.125rem;
+  background:var(--brass); color:var(--ground); font-weight:600;
+  border:1px solid var(--brass); cursor:pointer; }
+#crbk button.q { background:transparent; color:var(--muted);
+  border-color:var(--rule); font-weight:400; }
+#crbk button:hover { opacity:.88; }
+#crbk button.q:hover { color:var(--paper); border-color:var(--paper); opacity:1; }
+#crbk .fine { font-size:.75rem; color:var(--muted); margin:0; }
+@media (prefers-reduced-motion:reduce) { #crbk * { transition-duration:.01ms !important; } }
+</style>
+<script>
+(function () {
+  var BASE = 'https://chengrenbaike.com';
+  var NAME = '成人百科';
+  var SUB  = '索引页';
+  var ENTRIES = [
+    ['性教育基础', '', '从生理结构到基本常识'],
+    ['两性健康',   '', '身体变化、日常检查与就医提示'],
+    ['安全与避孕', '', '各类避孕方式的原理和实际有效性'],
+    ['性传播疾病', '', '怎么识别、怎么预防、去哪检测'],
+    ['性心理',     '', '欲望、认同，以及常被误解的困惑'],
+    ['关系与沟通', '', '同意、边界，和怎么把话说开'],
+    ['生理周期',   '', '月经、排卵与受孕窗口'],
+    ['常见误区',   '', '流传最广的说法，逐条核对'],
+    ['名词解释',   '', '术语表，按拼音排序'],
+    ['常见问题',   '', '被问得最多的那些']
+  ];
+
+  var root = document.getElementById('crbk');
+  var base = BASE.replace(/\/+$/, '');
+  var esc = function (s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  };
+  var url = function (p) { return p ? base + '/' + String(p).replace(/^\/+/, '') : base + '/'; };
+  var A = ' target="_blank" rel="noopener"';
+
+  var rows = ENTRIES.map(function (r) {
+    return '<a class="e" href="' + esc(url(r[1])) + '"' + A + '>'
+      + '<span class="ln"><i>' + esc(r[0]) + '</i>'
+      + '<span class="ld" aria-hidden="true"></span>'
+      + '<span class="go">进入</span></span>'
+      + (r[2] ? '<span class="nt">' + esc(r[2]) + '</span>' : '')
+      + '</a>';
+  }).join('');
+
+  /* 正文单独装在 .bd 里，年龄确认通过前整块 hidden。
+     光靠遮罩盖住不够：遮罩下面那些链接还在 Tab 顺序里，
+     访客能一路 Tab 过去回车进主站，把年龄确认绕掉。 */
+  var body = document.createElement('div');
+  body.className = 'bd';
+  body.hidden = true;
+  body.innerHTML =
+      '<h1 class="wm">' + esc(NAME) + '</h1>'
+    + '<p class="sub">' + esc(SUB) + '</p>'
+    + '<a class="door" href="' + esc(url('')) + '"' + A + '>'
+    + '<b>进入主站</b><span>' + esc(base.replace(/^https?:\/\//, '')) + '</span></a>'
+    + '<div class="hd"><h2>条目索引</h2><em>' + ENTRIES.length + ' 个条目</em></div>'
+    + rows
+    + '<p class="ft">18+ 本站内容仅限年满 18 周岁者访问。本页只是索引，正文都在主站。</p>';
+  root.appendChild(body);
+
+  /* Google Sites 把嵌入块放在 googleusercontent.com 的跨域沙箱 iframe 里，
+     localStorage 经常被存储分区或 Safari ITP 挡掉。挡掉时 setItem 也会失败，
+     结果就是每次打开都要重新确认一遍年龄 —— 这是这个平台上的预期行为，
+     不是 bug，别为此把门去掉。 */
+  var ok = false;
+  try { ok = localStorage.getItem('crbk-age-ok') === '1'; } catch (e) {}
+
+  if (ok) { body.hidden = false; return; }
+
+  var g = document.createElement('div');
+  g.className = 'gate';
+  g.setAttribute('role', 'dialog');
+  g.setAttribute('aria-modal', 'true');
+  g.innerHTML = '<div class="gp"><h2>年龄确认</h2>'
+    + '<p>本站内容面向成年人。继续浏览前，请确认你已满 18 周岁。</p>'
+    + '<div class="ga"><button type="button" data-ok>我已满 18 周岁</button>'
+    + '<button type="button" class="q" data-no>离开</button></div>'
+    + '<p class="fine">确认结果只存在你这台设备的浏览器里。</p></div>';
+  root.style.position = 'relative';
+  root.appendChild(g);
+
+  var okBtn = g.querySelector('[data-ok]');
+  okBtn.focus();
+  okBtn.addEventListener('click', function () {
+    try { localStorage.setItem('crbk-age-ok', '1'); } catch (e) {}
+    g.remove();
+    body.hidden = false;
+  });
+
+  /* 嵌在 iframe 里，history.back() 多半动不了外层页面，
+     所以「离开」就地把内容换成一句说明，不留任何入口。 */
+  g.querySelector('[data-no]').addEventListener('click', function () {
+    body.remove();
+    g.innerHTML = '<div class="gp"><h2>已退出</h2>'
+      + '<p>本页内容仅限年满 18 周岁者访问。</p></div>';
+  });
+})();
+</script>
