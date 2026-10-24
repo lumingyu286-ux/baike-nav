@@ -60,9 +60,11 @@
     <b>进入主站</b>
     <span>chengrenbaike.com</span>
   </a>
-  <!-- 项目站挂在 /<仓库名>/ 下，所以这里不能写 /。
-       换平台（Cloudflare Pages 挂在根目录）时改回 / 即可。 -->
-  <a class="back" href="/baike-nav/">回索引页</a>
+  <!-- 用 ./ 而不是绝对路径：同一份文件要同时服务于
+       GitHub 项目站（挂在 /<仓库名>/ 下）和 Cloudflare（挂根目录），
+       写死任何一个另一个就错。./ 两边都对。
+       唯一失效的情况是 /<仓库名>/a/b 这种多层路径，单页站不会有。 -->
+  <a class="back" href="./">回索引页</a>
 </div>
 </body>
 </html>

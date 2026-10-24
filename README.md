@@ -49,7 +49,9 @@ const SITE = {
 1. 推到仓库，Settings → Pages → Source 选 `Deploy from a branch`，分支 `main`、目录 `/ (root)`
 2. `.nojekyll` 已经放好了，不用额外操作
 
-仓库名不是 `<用户名>.github.io` 时，站点会挂在 `https://<用户名>.github.io/<仓库名>/` 下。这时 `404.html` 里那个次要链接「回索引页」(`href="/"`) 会指到你的账号根站而不是本项目，改成 `/<仓库名>/` 即可。404 页上的主按钮用的是绝对网址，不受影响。GitLab Pages 同理。
+仓库名不是 `<用户名>.github.io` 时，站点会挂在 `https://<用户名>.github.io/<仓库名>/` 下。`404.html` 里「回索引页」用的是相对路径 `./`，GitHub 项目站和 Cloudflare 根目录两边都对，不用改。404 页上的主按钮用的是绝对网址，不受影响。GitLab Pages 同理。
+
+当前部署：<https://lumingyu286-ux.github.io/baike-nav/> 与 <https://baikenav.pages.dev/>
 
 ### GitLab Pages
 
